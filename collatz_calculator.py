@@ -2,8 +2,8 @@ import os
 error: list[int] = list()
 
 
-def collatz_calculator(start: int = 2, end: int = 1001, steps: int = 1) -> int:
-    for i in range(start, end, steps):
+def collatz_calculator(start: int = 1, end: int = 1000, steps: int = 1) -> int:
+    for i in range(start, end + 1, steps):
         print(f"The initial value of i is {i}.")
         error.append(i)
         seen: set[int] = set()
@@ -44,25 +44,19 @@ def selection() -> None:
                         choice = input("Enter an integer value greater than 1 to set the range end: ")
                         try:
                             choice = abs(int(choice))
-                            if choice <= 1:
-                                print("The range must be greater than 1.")
-                            else:
-                                if collatz_calculator(end=choice) == 0:
-                                    print(f"An error has occurred with the number {error[0]}")
-                                break
+                            if collatz_calculator(end=choice) == 0:
+                                print(f"An error has occurred with the number {error[0]}")
+                            break
                         except ValueError:
-                            print("Only integer positive values allowed!")
+                            print("Only numbers allowed!")
                 case 3:
                     while True:
                         choice = input("Enter the number you want to test: ")
                         try:
                             choice = abs(int(choice))
-                            if choice <= 1:
-                                print("The number must be greater than 1.")
-                            else:
-                                if collatz_calculator(choice, choice) == 0:
-                                    print(f"An error has occurred with the number {error[0]}")
-                                break
+                            if collatz_calculator(start=choice, end=choice) == 0:
+                                print(f"An error has occurred with the number {error[0]}")
+                            break
                         except ValueError:
                             print("The number must be a positive integer.")
                 case _:

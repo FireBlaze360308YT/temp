@@ -1,8 +1,9 @@
 from collatz_calculator import selection
 
 
-def main():
+def main() -> None:
     selection()
+    return None
 
 
 if __name__ == '__main__':
